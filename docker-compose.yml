@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: library/mysql:5.7
+    hostname: mysql
+    container_name: db
+    restart: always
+    environment:
+      - MYSQL_DATABASE=tt
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=rererer123
+      - MYSQL_ROOT_PASSWORD=rererer12333
+    ports:
+      - "3307:3306"
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    container_name: phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_ARBITRARY=1
+    depends_on:
+      - db
